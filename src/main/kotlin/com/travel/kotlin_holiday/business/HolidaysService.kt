@@ -1,11 +1,11 @@
 package com.travel.kotlin_holiday.business
 
-import com.travel.kotlin_holiday.data.HolidaysRepository
+import com.travel.kotlin_holiday.data.HolidaysRepositoryBase
 import com.travel.kotlin_holiday.models.Holiday
 import org.springframework.stereotype.Service
 
 @Service
-class HolidaysService(val repository: HolidaysRepository) {
+class HolidaysService(val repository: HolidaysRepositoryBase) {
     fun findAll(): MutableList<Holiday> {
         return repository.findAll()
     }
