@@ -2,7 +2,6 @@ package com.travel.kotlin_holiday.data
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.travel.kotlin_holiday.models.Holiday
-import org.springframework.beans.factory.annotation.Value
 import java.io.File
 import java.nio.file.Paths
 import kotlin.properties.Delegates
@@ -22,14 +21,12 @@ class FsHolidaysRepository(val mapper: ObjectMapper, val filename: String) : Hol
         }
     }
 
-    constructor(mapper: ObjectMapper): this(mapper, "db.json") {}
-
     override fun findAll(): MutableList<Holiday> {
         return holidays;
     }
 
     override fun find(id: Long): Holiday? {
-        return  holidays.find { it.id == id };
+        return holidays.find { it.id == id };
     }
 
     override fun add(name: String) {
