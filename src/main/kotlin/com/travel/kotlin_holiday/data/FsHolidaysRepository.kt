@@ -6,14 +6,14 @@ import java.io.File
 import java.nio.file.Paths
 import kotlin.properties.Delegates
 
-class FsHolidaysRepository(val mapper: ObjectMapper, val filename: String) : HolidaysRepositoryBase {
+class FsHolidaysRepository(private val mapper: ObjectMapper, private val filename: String) : HolidaysRepositoryBase {
     private var currentId by Delegates.notNull<Long>();
 
-    val file: File by lazy {
+    private val file: File by lazy {
         Paths.get("src/main/resources/$filename").toFile();
     }
 
-    val holidays: MutableList<Holiday> by lazy {
+    private val holidays: MutableList<Holiday> by lazy {
         if (file.exists()) {
             mapper.readValue(file, Array<Holiday>::class.java).toList().toMutableList();
         } else {
